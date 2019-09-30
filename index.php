@@ -1,6 +1,7 @@
 
 <?php
-    $nomeSistema = "Cursos Ai!"
+    $nomeSistema = "Cursos Ai!";
+    $usuario = ['nome'=>'Gabriel'];
 ?>
 
 <!DOCTYPE html>
@@ -22,9 +23,15 @@
         </div>
         <nav>
             <ul class='nav'>
+            <?php if(isset($usuario) && $usuario != '') {?>
                 <li class='nav-item'><a class='nav-link' href='#'>Curso</a></li>
+
+                <li class='nav-item'><a class='nav-link' href='#'>Olá <?php echo $usuario['nome']; ?></a></li>
+            <?php }else { ?>
                 <li class='nav-item'><a class='nav-link' href='#'>Login</a></li>
-                <li class='nav-item'><a class='nav-link' href='#'>Cadastrar</a></li>
+
+                <li class='nav-item'><a class='nav-link' href='#'>Cadastro</a></li>
+            <?php } ?>
             </ul>
         </nav>
     </header>
