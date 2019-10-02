@@ -2,10 +2,15 @@
 <?php
     $nomeSistema = "Cursos Ai!";
     $usuario = ['nome'=>'Gabriel'];
+    $produtos=[
+        ["nome"=>"Curso Fullstack", "preco"=>'R$1200.00', "duracao"=>"5 meses"],
+        ["nome"=>"Curso Marketing", "preco"=>'R$1000.00', "duracao"=>"4 meses"]
+    ];
+    $categorias = ['Cursos', 'Palestras', 'Artigos']
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,58 +20,56 @@
     <title><?php echo $nomeSistema; ?></title>
 </head>
 <body>
-    <header class='navbar'>
-        <div id = 'logo'>
-            <h1 id='logo'>
-                <?php echo $nomeSistema; ?>
-            </h1>
+    <header>
+        <div class='navbar'>
+            <div id = 'logo'>
+                <h1 id='logo'>
+                    <?php echo $nomeSistema; ?>
+                </h1>
+            </div>
+            <nav>
+                <ul class='nav'>
+                <?php if(isset($usuario) && $usuario != '') {?>
+                    <li class='nav-item'><a class='nav-link' href='#'>Curso</a></li>
+
+                    <li class='nav-item'><a class='nav-link' href='#'>Olá <?php echo $usuario['nome']; ?></a></li>
+                <?php }else { ?>
+                    <li class='nav-item'><a class='nav-link' href='#'>Login</a></li>
+
+                    <li class='nav-item'><a class='nav-link' href='#'>Cadastro</a></li>
+                <?php } ?>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul class='nav'>
-            <?php if(isset($usuario) && $usuario != '') {?>
-                <li class='nav-item'><a class='nav-link' href='#'>Curso</a></li>
-
-                <li class='nav-item'><a class='nav-link' href='#'>Olá <?php echo $usuario['nome']; ?></a></li>
-            <?php }else { ?>
-                <li class='nav-item'><a class='nav-link' href='#'>Login</a></li>
-
-                <li class='nav-item'><a class='nav-link' href='#'>Cadastro</a></li>
-            <?php } ?>
-            </ul>
-        </nav>
+        <div class='navbar bg-dark text-white'>
+                <ul class='nav'>
+                <?php foreach($categorias as $categoria) { ?>
+                    <li class='nav-item'><a href'#' class='nav-link text white'><?php echo $categoria; ?></a></li>
+                </ul>
+                <?php } ?>
+            </div>
     </header>
     <main>
         <div class='countainer mt-4'>
             <div class='row justify-content-around'>
-                
+            <?php if(isset($produtos) && $produtos != []){ 
+                foreach($produtos as $produto){
+                ?>
+
                 <div class='col-lg-3 card text-center'>
-                    <h5>Curso Android</h5>
-                    <img src='o.img/android.png' class='card-img-top'
+                    <h5><?php echo $produto['nome']; ?></h5>
+                    <img src='o.img/android.png' class='card-img-top'>
                     <div class='card-body'>
-                        <p>Custo: R$100,00</p>
-                        <a href='#' class='btn btn-primary'>Comprar</a>
-                    </div>
-                    
-                    <div class='col-lg-3 card text-center'>
-                    <h5>Curso Android</h5>
-                    <img src='o.img/android.png' class='card-img-top'
-                    <div class='card-body'>
-                        <p>Custo: R$100,00</p>
-                        <a href='#' class='btn btn-primary'>Comprar</a>
-                    </div>
-                    
-                    <div class='col-lg-3 card text-center'>
-                    <h5>Curso Android</h5>
-                    <img src='o.img/android.png' class='card-img-top'
-                    <div class='card-body'>
-                        <p>Custo: R$100,00</p>
+                        <p><?php echo $produto['preco']; ?></p>
                         <a href='#' class='btn btn-primary'>Comprar</a>
                     </div>
                 </div>
+                <?php }  ?>
+            <?php } else { ?>
+                <h1>Não há produtos cadastrados nesta sessão!</h1>
+            <?php } ?>
             </div>
         </div>
-    </main>
-    <?php
-    ?>
+    </main>    
 </body>
 </html>
