@@ -1,4 +1,4 @@
-<?php
+<?php include_once('variaveis.php');
     $nomeSistema = "Cursos Ai!";
     $usuario = ['nome'=>'Gabriel'];
     $produtos=[
@@ -10,16 +10,47 @@
         $nomearquivo='produto.json';
 
         if(file_exists($nomearquivo)){
+            //Abriendo e pegando informações do arquivo.
+            $arquivo = file_get_contents($nomearquivo);
+            //Transformar json em array.
+            $produtos = json_decode($arquivo, true);
+            //Adicionando um novo produto na array que estava dentro do arquivo.
+            $produtos[] = ['nome' =>$nomeProduto, 'preco' =>$precoProduto, 'desc' =>$descProduto, 'imagem' =>$imgProduto];
+            $json = json_encode($produtos);
+            $deuCerto = file_put_contents($nomearquivo, $json);
 
+            if($deuCerto){
+                return "Produto cadastrado!!!";
+            }else {
+                return "Produto não cadastrado!!!";
+            }
+
+
+            var_dump($produtos);
         } else{
             $produtos = [];
             $produtos[] = ['nome' =>$nomeProduto, 'preco' =>$precoProduto, 'desc' =>$descProduto, 'imagem' =>$imgProduto];
+            //Transformando array em json.
+            $json = json_encode($produtos);
+            //Salvando o json dentro de um arquivo.
+            $deuCerto = file_put_contents($nomearquivo, $json);
 
-            var_dump($produtos);
+            if($deuCerto){
+                return "Produto cadastrado!!!";
+            }else {
+                return "Produto não cadastrado!!!";
+            }
+            }
         }
-    }
+
 if($_POST){
-    cadastrarProduto($_POST['nomeProduto'], $_POST['descProduto'], $_POST['imgProduto'], $_POST['precoProduto']);
+    //Salvando arquivo.
+    $imgProduto = $_FILES['imgProduto']['name'];
+    $localTmp = $_FILES['imgProduto']['tmp_name'];
+    echo cadastrarProduto($_POST['nomeProduto'], $_POST['descProduto'], $_POST['imgProduto'], $_POST['precoProduto']);
+    $caminhoSalvo = 'o.img/'.$nomeImg;
+    $deucerto = move_uploaded_file($localTmp, $caminhoSalvo);
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -67,7 +98,7 @@ if($_POST){
                 <h1>Cadastro Produtos</h1>
             </div>
             <div class='col-12'>
-                <form action'' method='post'>
+                <form action'' method='post' enctype='multipart/form-data'>
                     <div class='form-group'>
                         <input type="text" class='form-control' name='nomeProduto' placeholder='Nome do produto'/>
                     </div>

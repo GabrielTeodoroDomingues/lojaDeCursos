@@ -1,5 +1,6 @@
 
 <?php
+    include_once('variaveis.php');
     $nomeSistema = "Cursos Ai!";
     $usuario = ['nome'=>'Gabriel'];
     $produtos=[
