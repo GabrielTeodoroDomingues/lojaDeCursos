@@ -1,13 +1,7 @@
 
 <?php
     include_once('variaveis.php');
-    $nomeSistema = "Cursos Ai!";
-    $usuario = ['nome'=>'Gabriel'];
-    $produtos=[
-        ["nome"=>"Curso Fullstack", "preco"=>'R$1200.00', "duracao"=>"5 meses", "img"=>"o.img/android.png"],
-        ["nome"=>"Curso Marketing", "preco"=>'R$1000.00', "duracao"=>"4 meses", "img"=>"o.img/android.png"]
-    ];
-    $categorias = ['Cursos', 'Palestras', 'Artigos']
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +53,7 @@
 
                 <div class='col-lg-3 card text-center'>
                     <h5><?php echo $produto['nome']; ?></h5>
-                    <img src='<?php echo $produto['img']?>' class='card-img-top'>
+                    <img src='<?php echo $produto['imagem']?>' class='card-img-top'>
                     <div class='card-body'>
                         <p><?php echo $produto['preco']; ?></p>
                         <a href='carrinho.php?nomeProduto=<?php echo $produto['nome']?>'; class='btn btn-primary'>Comprar</a>

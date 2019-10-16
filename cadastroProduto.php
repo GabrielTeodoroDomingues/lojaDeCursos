@@ -1,4 +1,4 @@
-<?php include_once('variaveis.php');
+<?php 
     $nomeSistema = "Cursos Ai!";
     $usuario = ['nome'=>'Gabriel'];
     $produtos=[
@@ -45,12 +45,13 @@
 
 if($_POST){
     //Salvando arquivo.
-    $imgProduto = $_FILES['imgProduto']['name'];
+    $nomeImg = $_FILES['imgProduto']['name'];
     $localTmp = $_FILES['imgProduto']['tmp_name'];
-    echo cadastrarProduto($_POST['nomeProduto'], $_POST['descProduto'], $_POST['imgProduto'], $_POST['precoProduto']);
-    $caminhoSalvo = 'o.img/'.$nomeImg;
+    $dataAtual = date('d-m-y');
+    $caminhoSalvo = 'o.img/'.$dataAtual.$nomeImg;
     $deucerto = move_uploaded_file($localTmp, $caminhoSalvo);
-    exit;
+    echo cadastrarProduto($_POST['nomeProduto'], $_POST['descProduto'], $caminhoSalvo, $_POST['precoProduto']);
+    
 }
 ?>
 <!DOCTYPE html>
