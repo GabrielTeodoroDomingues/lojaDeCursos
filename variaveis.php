@@ -1,7 +1,8 @@
 <?php
     $nomeSistema = 'cursos';
-    $usuario = ['nome' => 'Gabriel'];
+    session_start();
     $nomearquivo = 'produto.json';
+    $usuario = isset($_SESSION['usuario'])? $_SESSION['usuario']: [];
     $produtos = json_decode(file_get_contents($nomearquivo), true);
   
     //$produtos=[
