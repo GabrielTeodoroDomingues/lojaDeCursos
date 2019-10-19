@@ -1,5 +1,5 @@
 <?php
-    $nomeSistema = 'cursos';
+    $nomeSistema = 'Cursos';
     session_start();
     $nomearquivo = __DIR__.'/../produto.json';
     $usuario = isset($_SESSION['usuario'])? $_SESSION['usuario']: [];

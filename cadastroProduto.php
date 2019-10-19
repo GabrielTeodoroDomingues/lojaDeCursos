@@ -1,10 +1,10 @@
 <?php 
     $nomeSistema = "Cursos Ai!";
     $usuario = ['nome'=>'Gabriel'];
-    $produtos=[
-        ["nome"=>"Curso Fullstack", "preco"=>'R$1200.00', "duracao"=>"5 meses", "img"=>"o.img/android.png"],
-        ["nome"=>"Curso Marketing", "preco"=>'R$1000.00', "duracao"=>"4 meses", "img"=>"o.img/android.png"]
-    ];
+    //$produtos=[
+        //["nome"=>"Curso Fullstack", "preco"=>'R$1200.00', "duracao"=>"5 meses", "img"=>"img/android.png"],
+        //["nome"=>"Curso Marketing", "preco"=>'R$1000.00', "duracao"=>"4 meses", "img"=>"img/android.png"]
+    //];
     $categorias = ['Cursos', 'Palestras', 'Artigos'];
     function cadastrarProduto($nomeProduto, $descProduto, $imgProduto, $precoProduto){
         $nomearquivo='produto.json';
@@ -48,7 +48,7 @@ if($_POST){
     $nomeImg = $_FILES['imgProduto']['name'];
     $localTmp = $_FILES['imgProduto']['tmp_name'];
     $dataAtual = date('d-m-y');
-    $caminhoSalvo = 'o.img/'.$dataAtual.$nomeImg;
+    $caminhoSalvo = 'img/'.$dataAtual.$nomeImg;
     $deucerto = move_uploaded_file($localTmp, $caminhoSalvo);
     echo cadastrarProduto($_POST['nomeProduto'], $_POST['descProduto'], $caminhoSalvo, $_POST['precoProduto']);
     
@@ -64,35 +64,7 @@ if($_POST){
     <title>Cadastro Produtos</title>
 </head>
 <body>
-<header>
-        <div class='navbar'>
-            <div id = 'logo'>
-                <h1 id='logo'>
-                    <?php echo $nomeSistema; ?>
-                </h1>
-            </div>
-            <nav>
-                <ul class='nav'>
-                <?php if(isset($usuario) && $usuario != '') {?>
-                    <li class='nav-item'><a class='nav-link' href='#'>Curso</a></li>
-
-                    <li class='nav-item'><a class='nav-link' href='#'>Olá <?php echo $usuario['nome']; ?></a></li>
-                <?php }else { ?>
-                    <li class='nav-item'><a class='nav-link' href='#'>Login</a></li>
-
-                    <li class='nav-item'><a class='nav-link' href='#'>Cadastro</a></li>
-                <?php } ?>
-                </ul>
-            </nav>
-        </div>
-        <div class='navbar bg-dark text-white'>
-                <ul class='nav'>
-                <?php foreach($categorias as $categoria) { ?>
-                    <li class='nav-item'><a class='nav-link text white' href='#'><?php echo $categoria; ?></a></li>
-                </ul>
-                <?php } ?>
-            </div>
-    </header>
+<?php include_once('header.php');?>
     <main class='container'>
         <div class='row'>
             <div class='col-12'>
